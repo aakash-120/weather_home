@@ -1,0 +1,212 @@
+<?php
+
+// echo "<pre>";
+// print_r($forecast);
+// echo "</pre>";
+
+
+// foreach($forecast as $k => $v)
+// {
+//     if($k == 'forecast')
+//     {
+//         // echo "<pre>";
+//         // print_r($v);
+//         // echo "<br>";
+//         foreach($v as $k1 => $v1)
+//         {
+//         //      echo "<pre>";
+//         // print_r($v1);
+//         // echo "<br>";
+            
+                
+//                 foreach($v1[0] as $k2 => $v2)
+//                 {
+//                         echo "<pre>";
+//                         print_r($k2);
+//                         echo "<br>";
+//                         if($k2 == 'day')
+//                         {
+//                             print_r($v2['maxtemp_c']);
+//                             echo "<br>";
+//                             print_r($v2['avgtemp_c']);
+//                             echo "<br>";
+//                             print_r($v2['mintemp_f']);
+//                             echo "<br>";
+//                             print_r($v2['avgtemp_c']);
+
+//                             echo "<br>";
+//                             print_r($v2['avgtemp_c']);
+//                             echo "<br>";
+//                             print_r($v2['avgtemp_c']);
+
+//                         }
+//                 }
+            
+            
+//         }
+//     }
+// }
+
+
+
+?>
+<style>
+    @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+body {padding-top:50px;}
+
+.box {
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 10px 25px;
+    text-align: right;
+    display: block;
+    margin-top: 60px;
+}
+.box-icon {
+    background-color: #57a544;
+    border-radius: 50%;
+    display: table;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+    margin-top: -61px;
+}
+.box-icon span {
+    color: #fff;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.info h4 {
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.info > p {
+    color: #717171;
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: justify;
+}
+.info > a {
+    background-color: #03a9f4;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+.info > a:hover {
+    background-color: #0288d1;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+p{
+  line-height: 1px;
+}
+    </style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+
+<?php
+
+foreach($forecast as $k => $v)
+{
+    if($k == 'location'){
+        $place = $v['name'];
+    
+    }
+    if($k == 'forecast')
+    {
+        foreach($v as $k1 => $v1)
+        {             
+                foreach($v1[0] as $k2 => $v2)
+                {
+                    if($k2 == 'day')
+                        {
+                            $maxtemp = $v2['maxtemp_c'];
+                            $avgtemp = $v2['avgtemp_c'];
+                            $mintemp = $v2['mintemp_f'];
+                            $weather = '';
+                            // echo $maxtemp;
+                            // foreach($v2 as $k9 => $v9)
+                            // {
+                            //     if($k9 == 'condition')
+                                
+                            //      print_r($v9['text']);
+                            // }
+
+                        }
+                    if($k2 == 'hour')
+                    {   
+                        foreach($v2 as $k3 => $v3)
+                        {
+                            ?>
+
+<div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="box">
+                <div class="box-icon">
+                    <span class="fa fa-4x fa-html5"></span>
+                </div>
+                <div class="info">
+                    <h4 class="text-center"><?php print_r($place); ?></h4>
+                    <p></p>
+                    <p>Date and time : <?php print_r($v3['time']);?><p>
+                    <p>Temp in celsius : <?php print_r($v3['temp_c']);?><p>
+                    <p>Wind in kph : <?php print_r($v3['wind_kph']);?><p>
+                    <p>Chance of Rain : <?php if($v3['chance_of_rain'] == 0){ print_r("No");}else{print_r("Yes");}?><p>
+                    <p>Weather : <?php print_r($v3['condition']['text']);?><p>
+
+                    <p>maxtemp : <?php print_r($maxtemp);?><p>
+                    <p>avgtemp : <?php print_r($avgtemp);?><p>
+                    <p>mintemp : <?php print_r($mintemp);?><p>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+                
+	</div>
+    
+    <?php
+                        }
+    // if($k2 == 'day')
+    // {
+    //                         print_r($v2['maxtemp_c']);
+    //                         echo "<br>";
+    //                         print_r($v2['avgtemp_c']);
+    //                         echo "<br>";
+    //                         print_r($v2['mintemp_f']);
+    //                         echo "<br>";
+    //                         print_r($v2['avgtemp_c']);
+
+    //                         echo "<br>";
+    //                         print_r($v2['avgtemp_c']);
+    //                         echo "<br>";
+    //                         print_r($v2['avgtemp_c']);
+
+                            ?>
+
+                        
+                
+            
+            
+        
+
+   
+
+    <?php } } }}}?>
+
+    
+
+
+
+
+</div>

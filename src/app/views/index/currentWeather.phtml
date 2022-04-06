@@ -1,0 +1,129 @@
+<?php
+
+// echo "              inside weather";
+// foreach ($current_weather as $k => $v) {
+//     echo "<pre>";
+
+//     if ($k == 'location') {
+//         print_r($v['name']);
+//     }
+
+//     if ($k == 'current') {
+//         //  print_r($v);
+//         print_r($v['temp_c']);
+//         print_r($v['wind_kph']);
+//         echo "<br>";
+//         foreach($v as $k2 => $v2)
+//         {
+//            if($k2 == 'condition')
+//            {
+//                print_r($v2['text']);
+//                print_r($v2['icon']);
+               
+//            }
+
+//            if($k2 == 'air_quality')
+//            {echo "              inside weather";
+// foreach ($current_weather as $k => $v) {
+//     echo "<pre>";
+
+//     if ($k == 'location') {
+//         print_r($v['name']);
+//     }
+
+//     if ($k == 'current') {
+//         //  print_r($v);
+//         print_r($v['temp_c']);
+//         print_r($v['wind_kph']);
+//         echo "<br>";
+//         foreach($v as $k2 => $v2)
+//         {
+//            if($k2 == 'condition')
+//            {
+//                print_r($v2['text']);
+//                print_r($v2['icon']);
+               
+//            }
+
+//            if($k2 == 'air_quality')
+//            {
+//                print_r($v2['pm2_5']);
+//                print_r($v2['pm10']);
+               
+//            }
+//         }
+//     }
+//     echo "</pre>";
+// }
+//                print_r($v2['pm2_5']);
+//                print_r($v2['pm10']);
+               
+//            }
+//         }
+//     }
+//     echo "</pre>";
+// }
+?>
+
+
+
+
+<section class="vh-100" style="background-color: #f5f6f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-10 col-lg-8 col-xl-6">
+
+        <div class="card bg-dark text-white" style="border-radius: 40px;">
+          <div class="bg-image" style="border-radius: 35px;">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/draw1.webp"
+              class="card-img"
+              alt="weather"
+            />
+            <div class="mask" style="background-color: rgba(190, 216, 232, .5);"></div>
+          </div>
+          <div class="card-img-overlay text-dark p-5">
+
+          <?php
+          foreach ($current_weather as $k => $v) {
+            if ($k == 'location') {                         
+            ?>        
+            <h4 class="mb-0"><?php if(isset(($v['name']))){print_r($v['name']);} }?></h4>
+
+
+            <?php  if ($k == 'current') {   ?>
+            <p class="display-2 my-3"><?php if(isset(($v['temp_c']))){print_r($v['temp_c']);} ?>°C</p>
+            <p class="mb-2">Wind Speed: <strong><?php if(isset(($v['wind_kph']))){print_r($v['wind_kph']);} }?></strong></p>
+
+
+            <!-- <p class="mb-2">Feels Like: <strong>-1.08 °C</strong></p> -->
+            <?php
+            foreach($v as $k2 => $v2)
+            {
+           if($k2 == 'condition')
+           {
+               ?>
+              <h5> <?php  print_r($v2['text']);?> </h5>
+              <?php 
+               
+           }
+
+           if($k2 == 'air_quality')
+           {
+               ?>
+                <h5>PPM2_5 -> <?php  print_r($v2['pm2_5']);?> </h5>
+                <h5>PPM10 -> <?php  print_r($v2['pm10']);?> </h5>
+               <?php
+               
+           }
+        }
+        ?>
+           
+            <?php } ?>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
